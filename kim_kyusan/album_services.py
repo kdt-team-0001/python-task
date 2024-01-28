@@ -1,5 +1,3 @@
-from user import *
-from album import *
 from crud_module import *
 
 # 앨범 추가
