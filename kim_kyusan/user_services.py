@@ -1,11 +1,12 @@
-from geo import *
-from company import *
-from address import *
-from user import *
+from a_mac.study_python.kim_kyusan.user.geo import *
+from a_mac.study_python.kim_kyusan.user.company import *
+from a_mac.study_python.kim_kyusan.user.address import *
 from crud_module import *
-# user 를 클래스로 분류하는 이유가 뭐지? 단일 객체를 검색할 떄 사용하기 위해서인지..
 
 if __name__ == '__main__':
+# 사용자 아이디 등록
+# 1. 위치, 주소, 회사의 값을 선행 확인 후 생성이 가능
+
     # 위치 정보 가져오기
     find_by_id_qeury= "select id, lat, lng from tbl_geo where id = %s"
     find_by_id_params= 1,
@@ -14,7 +15,6 @@ if __name__ == '__main__':
     find_all_by_query ="select id, lat, lng from tbl_geo"
     find_all_by_params = []
     find_all_geo = find_all_by(find_all_by_query,find_all_by_params)
-
 
     # 주소 아이디 찾기
     find_by_id_qeury = "select a.id, a.street, a.suite, a.city, a.zipcode from tbl_address a, tbl_geo g \
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     )
     # save_many(save_query, save_many_params)
 
-    # 사용자 1개 선택 시 출력되는 정보에 대해서 한번 작성 필요 =>
+
     # 사용자 전체 정보 출력
     find_all_by_query = "select uc.name, uc.username, uc.email, uc.phone, uc.website, uc.c_name,uc.catch_phrase, uc.bs, \
                         ag.street, ag.suite, ag.city, ag.zipcode, ag.lng, ag.lat \
@@ -95,7 +95,6 @@ if __name__ == '__main__':
 
     # 사용자 삭제
     # 1. 사용자 계정 있을 때만 삭제
-    # 1-1. 삭제될때는 geo , company, address 까지 삭제
     if user_info is not None:
         delete_query = "delete from tbl_user where email = %s"
         delete_params = user_info.get("email")
