@@ -98,6 +98,17 @@ create table tbl_album (
     title varchar(255),
     constraint fk_album_user foreign key (user_id) references tbl_user(id)
 );
+
+create table tbl_photo (
+    album_id bigint,
+    id bigint auto_increment primary key,
+    title varchar(255),
+    url varchar(255),
+    thumbnail_url varchar(255),
+    constraint fk_photo_album foreign key (album_id) references tbl_album(id)
+);
+
 select *from tbl_album;
-select *from tbl_todo;
+select *from tbl_photo;
+select *from tbl_user;
 
