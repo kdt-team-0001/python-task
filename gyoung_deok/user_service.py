@@ -58,16 +58,14 @@ if __name__ == '__main__':
         ("Patricia Lebsack", "Karianne", "Julianne.OConner@kory.org", "493-170-9623 x156", "kale.biz", addresses[3].get("id"), companies[3].get("id")),
         ("Chelsey Dietrich", "Kamren", "Lucio_Hettinger@annie.ca", "(254)954-1289", "demarco.info", addresses[4].get("id"), companies[4].get("id")),
     )
-    save_many(save_many_query, save_many_params)
+    # save_many(save_many_query, save_many_params)
 
     # 마이페이지
-    find_by_id_params = 2,
-    geo, address, company, user = find_by_user_id(find_by_id_params)
-
-    # print(geo)
-    # print(address)
-    # print(company)
-    # print(user)
+    find_by_id_params = 1,
+    geo = find_by_user_id(find_by_id_params).get("geo")
+    address = find_by_user_id(find_by_id_params).get("address")
+    company = find_by_user_id(find_by_id_params).get("company")
+    user = find_by_user_id(find_by_id_params).get("user")
 
     # 유저정보 수정
     # geo테이블
@@ -88,7 +86,7 @@ if __name__ == '__main__':
     # address테이블
     # 수정하고자 하는 부분에 값 넣기
     find_by_id_query = "select * from tbl_geo where id = %s"
-    find_by_id_params = 2,
+    find_by_id_params = 1,
     change_geo = Geo(**find_by_id(find_by_id_query, find_by_id_params))
 
     address.street = address.street

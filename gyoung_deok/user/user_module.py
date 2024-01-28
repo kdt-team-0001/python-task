@@ -47,4 +47,4 @@ def find_by_user_id(params):
         company=company.__dict__
     )
 
-    return geo, address, company, user
+    return {'geo': geo, 'address': address, 'company': company, 'user': user}
