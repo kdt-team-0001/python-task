@@ -1,7 +1,7 @@
-from geo import *
-from address import *
-from company import *
-from user import *
+from user.geo import *
+from user.address import *
+from user.company import *
+from user.user import *
 from crud_module import *
 from connection_module import *
 
@@ -91,7 +91,7 @@ if __name__ == '__main__':
     user = users[0]
     user.name = "한동석"
     user.email = "hds1234@gmail.com"
-    update_query = ("update tbl_user set id = %s, name = %s, username = %s, email = %s, address_id = %s, \
+    update_query = ("update tbl_user set name = %s, username = %s, email = %s, address_id = %s, \
                      phone = %s, website = %s, company_id = %s where id = %s")
     update_params = user.id, user.name, user.username, user.email, user.address.id, user.phone, user.website, user.company.id, user.id
     # update(update_query, update_params)

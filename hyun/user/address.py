@@ -1,3 +1,5 @@
+
+
 class Address:
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
@@ -6,3 +8,4 @@ class Address:
         self.city = kwargs.get('city')
         self.zipcode = kwargs.get('zipcode')
         self.geo = kwargs.get('geo')
+
