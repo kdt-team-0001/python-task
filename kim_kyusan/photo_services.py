@@ -1,5 +1,3 @@
-from album import *
-from photo import *
 from crud_module import *
 
 # 포토 생성
