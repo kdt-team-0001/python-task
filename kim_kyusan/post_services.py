@@ -1,5 +1,3 @@
-from post import *
-from user import *
 from crud_module import *
 
 # post 생성
@@ -21,7 +19,8 @@ save_many_params = (
 find_by_id_query = "select user_id, id, title, body from tbl_post where title = %s"
 find_by_id_params = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
 post_list = find_by_id(find_by_id_query,find_by_id_params)
-# post , body 수정
+
+# post 항목 중 body 수정
 if post_list is not None:
     new_body = input("새로운 내용을 입력하세요: ")
     update_query = "update tbl_post set body = %s where title = %s"

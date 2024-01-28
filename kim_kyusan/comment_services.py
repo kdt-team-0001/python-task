@@ -1,6 +1,4 @@
-from comment import *
 from crud_module import *
-from post import *
 
 # comment 생성
 find_by_id_query = "select id from tbl_post where title = %s "
@@ -25,7 +23,7 @@ comment_list = find_all(find_all_query)
 for comment in comment_list:
     print(comment)
 
-# comment 수정 (name)
+# comment 항목 중 name 수정
 if post_list is not None:
     new_name = input("새로운 이름을 입력하세요: ")
     update_qeury = "update tbl_comment set name = %s where post_id = %s and email = %s"

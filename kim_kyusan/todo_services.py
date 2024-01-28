@@ -1,5 +1,4 @@
-from user import *
-from todo import *
+from a_mac.study_python.kim_kyusan.todo.todo import *
 from crud_module import *
 
 find_by_id_query = "select id from tbl_user where id = %s"
@@ -33,7 +32,7 @@ for todo in todo_one_list:
     todo_one = Todo(**todo)
     # print(todo_one.__dict__)
 
-# todo리스트 comleted 수정
+# todo항목 중 comleted 수정
 find_by_id_query= "select id, user_id, title, completed from tbl_todo where title = %s"
 find_by_id_params = "delecturs aut autem",
 todo_title_list =find_by_id(find_by_id_query, find_by_id_params)
