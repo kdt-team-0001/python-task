@@ -108,7 +108,23 @@ create table tbl_photo (
     constraint fk_photo_album foreign key (album_id) references tbl_album(id)
 );
 
-select *from tbl_album;
-select *from tbl_photo;
-select *from tbl_user;
+create table tbl_post (
+    user_id bigint,
+    id bigint auto_increment primary key ,
+    title varchar(255),
+    body varchar(255),
+    constraint fk_post_user foreign key (user_id) references tbl_user(id)
+);
 
+create table tbl_comment (
+    post_id bigint,
+    id bigint auto_increment primary key ,
+    name varchar(255),
+    email varchar(255),
+    body varchar(255),
+    constraint fk_comment_post foreign key (post_id) references tbl_post(id)
+);
+
+select *from tbl_post;
+select *from tbl_comment;
+update tbl_comment set post_id = 1 where id = 5;
