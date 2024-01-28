@@ -23,25 +23,14 @@ if __name__ == '__main__':
     # save(save_query, save_params)
 
     # 게시글 목록
-    find_all_query = "select user_id, id, title from post"
+    find_all_query = "select user_id, id, title from tbl_post"
     post_list = find_all(find_all_query)
     print(post_list)
 
     # 게시글 조회
-    find_by_id_query = "select p.user_id, p.id, p.title, p.body, \
-                        c.post_id, c.id, c.name, c.email, c.body \
-                        from tbl_post p join tbl_comment c \
-                        on p.id = c.post_id and p.id = %s"
-    find_by_id_params = 1,
-    found_post = find_by_id(find_by_id_query, find_by_id_params)
-    comment = Comment(**found_post)
-    post = Post(comment=comment, **found_post)
-    print(post)
-
-    # 게시글 조회
     find_by_id_query = "select user_id, id, title, body \
-                        from post \
-                        where id %s"
+                        from tbl_post \
+                        where id = %s"
     find_by_id_params = 1,
     post = find_by_id(find_by_id_query, find_by_id_params)
     print(post)

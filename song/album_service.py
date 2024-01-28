@@ -27,17 +27,6 @@ if __name__ == '__main__':
     found_albums = find_all(find_all_query)
     print(found_albums)
 
-    # 앨범 정보 조회
-    find_by_id_query = "select a.user_id, a.id, a.title, \
-                        p.album_id, p.id, p.title, p. url, p.thumbnail_url\
-                        from tbl_album a join tbl_photo p \
-                        on a.id = p.album_id and a.id = %s"
-    find_by_id_params = 1,
-    found_album = find_by_id(find_by_id_query, find_by_id_params)
-    photo = Photo(**found_album)
-    album = Album(photo=photo, **found_album)
-    print(album.__dict__)
-
     # 앨범 수정
     update_query = "update tbl_album \
                     set title = 'test album' \

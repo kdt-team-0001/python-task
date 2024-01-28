@@ -29,13 +29,6 @@ if __name__ == '__main__':
     # # print(company.__dict__)
 
     # 유저 정보
-    find_by_id_query = "select u.id, u.name, username, email, address_id, phone, website, company_id, \
-                        a.id, a.street, a.suite, a.city, a.zipcode, a.geo_id, \
-                        g.id, g.lat, g.lng, \
-                        c.id, c.name, c.catch_phrase, c.bs \
-                        from tbl_user u join tbl_address a on u.address_id = a.id \
-                        join tbl_geo g on a.geo_id = g.id \
-                        join tbl_company c on u.company_id = c.id"
     save_many_query = "insert into tbl_user(name, username, email, address_id, phone, website, company_id)\
                         values (%s, %s, %s, %s, %s, %s, %s)"
     save_many_params = (
