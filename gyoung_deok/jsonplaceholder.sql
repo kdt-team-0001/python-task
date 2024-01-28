@@ -97,3 +97,37 @@ create table tbl_comment(
 
 select * from tbl_post;
 select * from tbl_comment;
+
+create table tbl_album(
+    id bigint auto_increment primary key,
+    title varchar(255) not null,
+    user_id bigint not null,
+    constraint fk_album_user foreign key(user_id)
+                      references tbl_user(id)
+                      on delete cascade
+);
+
+create table tbl_photo(
+    id bigint auto_increment primary key,
+    title varchar(255) not null,
+    url varchar(255) not null,
+    thumbnail_url varchar(255) not null,
+    album_id bigint not null,
+    constraint fk_photo_album foreign key(album_id)
+                      references tbl_album(id)
+                      on delete cascade
+);
+
+select * from tbl_album;
+select * from tbl_photo;
+
+create table tbl_todo(
+    id bigint auto_increment primary key,
+    title varchar(255) not null,
+    completed tinyint default 0,
+    user_id bigint not null,
+    constraint fk_todo_user foreign key(user_id)
+                      references tbl_user(id)
+                      on delete cascade
+);
+select * from tbl_todo;
