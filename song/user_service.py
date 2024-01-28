@@ -1,7 +1,7 @@
-from geo import *
-from address import *
-from company import *
-from user import *
+from user.geo import *
+from user.address import *
+from user.company import *
+from user.user import *
 from crud_module import *
 
 

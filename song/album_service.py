@@ -1,6 +1,4 @@
-from user import *
-from album import *
-from photo import *
+from album.album import *
 from crud_module import *
 
 if __name__ == '__main__':

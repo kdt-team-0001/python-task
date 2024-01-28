@@ -1,5 +1,4 @@
-from user import *
-from todo import *
+from todo.todo import *
 from crud_module import *
 
 

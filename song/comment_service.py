@@ -1,6 +1,4 @@
-from user import *
-from post import *
-from comment import *
+from comment.comment import *
 from crud_module import *
 
 # post_id, id, name, email, body

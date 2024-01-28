@@ -1,6 +1,4 @@
-from user import *
-from album import *
-from photo import *
+from photo.photo import *
 from crud_module import *
 
 # album_id, id, title, url, thumbnail_url
