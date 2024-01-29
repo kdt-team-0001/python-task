@@ -123,3 +123,8 @@ on a.geo_id = g.id) ag
 on uc.address_id = ag.id
 ;
 
+select *from tbl_todo;
+
+select *from tbl_post;
+
+select a.title as "album_title", p.title, p.url, p.thumbnail_url  from tbl_photo p join tbl_album a on p.album_id = a.id and p.id =1

@@ -9,3 +9,6 @@ class Address:
         self.suite= kwargs.get("suite")
         self.city = kwargs.get("city")
         self.zipcode = kwargs.get("zipcode")
+        self.lat = kwargs.get("lat")
+        self.lng = kwargs.get("lng")
+        # self.geo = kwargs.get("Geo").__dict__

@@ -1,6 +1,7 @@
-from a_mac.study_python.kim_kyusan.user.geo import *
-from a_mac.study_python.kim_kyusan.user.company import *
-from a_mac.study_python.kim_kyusan.user.address import *
+from study_python.kim_kyusan.user.geo import *
+from study_python.kim_kyusan.user.company import *
+from study_python.kim_kyusan.user.address import *
+from study_python.kim_kyusan.user.user import *
 from crud_module import *
 
 if __name__ == '__main__':
@@ -17,26 +18,23 @@ if __name__ == '__main__':
     find_all_geo = find_all_by(find_all_by_query,find_all_by_params)
 
     # 주소 아이디 찾기
-    find_by_id_qeury = "select a.id, a.street, a.suite, a.city, a.zipcode from tbl_address a, tbl_geo g \
+    find_by_id_query = "select a.id, a.street, a.suite, a.city, a.zipcode, g.lat, g.lng from tbl_address a, tbl_geo g \
                         where a.geo_id = g.id and g.id = %s"
     find_by_id_params = find_geo.get('id')
-    find_address = find_by_id(find_by_id_qeury, find_by_id_params)
+    find_address = find_by_id(find_by_id_query, find_by_id_params)
     address = Address(**find_address)
-
-    find_all_by_query = "select a.id, a.street, a.suite, a.city, a.zipcode, g.lat, g.lng from tbl_address a, tbl_geo g \
-                        where a.geo_id = g.id "
-    find_all_by_params = []
-    find_all_address = find_all_by(find_all_by_query,find_all_by_params)
-
+    address_id = address.__dict__.get('id')
 
     # 회사 아이디 찾기
-    find_by_id_qeury = "select name, catch_phrase, bs from tbl_company where id = %s"
+    find_by_id_query = "select id, name, catch_phrase, bs from tbl_company where id = %s"
     find_by_id_params = 1,
-    find_company = find_by_id(find_by_id_qeury, find_by_id_params)
+    find_company = find_by_id(find_by_id_query, find_by_id_params)
     company = Company(**find_company)
-    find_all_by_query = "select name, catch_phrase, bs from tbl_company"
-    find_all_by_params = []
-    find_all_company = find_all_by(find_all_by_query,find_all_by_params)
+    company_id = company.__dict__.get('id')
+
+    # find_all_by_query = "select name, catch_phrase, bs from tbl_company"
+    # find_all_by_params = []
+    # find_all_company = find_all_by(find_all_by_query,find_all_by_params)
 
 
     # 사용자 추가
@@ -51,6 +49,17 @@ if __name__ == '__main__':
     )
     # save_many(save_query, save_many_params)
 
+    # 사용자 한명 정보 출력 (회사 id 가 1이고, 주소 정보가 1인 사용자 출력)
+    # 클래스를 사용
+    find_by_id_query = "select * from tbl_user where address_id= %s and company_id =%s"
+    find_by_id_params = address_id, company_id
+    user_one_list = find_by_id(find_by_id_query, find_by_id_params)
+    user = User(id= user_one_list.get('id'), name =user_one_list.get('name'), username= user_one_list.get('username'),  address = address, email= user_one_list.get('email'), \
+                phone= user_one_list.get('phone'), website= user_one_list.get('website'), company = company)
+    print(user.__dict__)
+
+
+
 
     # 사용자 전체 정보 출력
     find_all_by_query = "select uc.name, uc.username, uc.email, uc.phone, uc.website, uc.c_name,uc.catch_phrase, uc.bs, \
@@ -64,8 +73,8 @@ if __name__ == '__main__':
                         on uc.address_id = ag.id"
     find_all_by_param= []
     users = find_all_by(find_all_by_query,find_all_by_param)
-    # for user in users:
-        # print(user)
+    for user in users:
+        print(user)
 
     #사용자 업데이트
     # 1. 사용자 계정 유무 체크
@@ -74,7 +83,7 @@ if __name__ == '__main__':
     find_by_id_query = "select u.id, u.address_id from tbl_user u, tbl_address a where u.address_id= a.id and u.email = %s"
     find_by_id_params = check_user_email
     user_info = find_by_id(find_by_id_query,find_by_id_params)
-    # print(user_info)
+    print(user_info)
 
     if user_info is not None:
         if choice_update_service == 1:

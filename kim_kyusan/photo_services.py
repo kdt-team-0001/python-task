@@ -1,4 +1,6 @@
 from crud_module import *
+from photo.photo import *
+
 
 # 포토 생성
 find_by_id_qeury = "select *from tbl_album where id = %s"
@@ -24,7 +26,14 @@ photo_list = find_by_id(find_by_id_qeury, find_by_id_params)
 find_by_id_qeury = "select  id,title from tbl_album where title = %s"
 find_by_id_params = "quidem molestiae enim"
 album_list = find_by_id(find_by_id_qeury, find_by_id_params)
-print(album_list.get('id'))
+# print(album_list.get('id'))
+
+# 포토 1개 조회
+find_by_id_query = "select a.title as album_title, p.title, p.url, p.thumbnail_url  from tbl_photo p join tbl_album a on p.album_id = a.id and p.id = %s"
+find_by_id_params = 1,
+photo_one_list = find_by_id(find_by_id_query, find_by_id_params)
+photo = Photo(**photo_one_list)
+print(photo.__dict__)
 
 # 포토 title 수정
 if album_list is not None:
