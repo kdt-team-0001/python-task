@@ -1,4 +1,5 @@
 from crud_module import *
+from album.album import *
 
 # 앨범 추가
 
@@ -23,6 +24,15 @@ album_list = find_all_by(find_all_by_query, find_all_by_params)
 # for album in album_list:
 #     print(album)
 
+# 앨범 1개 조회 검색
+find_by_id_query = "select user_id, id, title from tbl_album where id = %s"
+find_by_id_params = 2,
+album_one_list = find_by_id(find_by_id_query, find_by_id_params)
+album = Album(**album_one_list)
+print(album.__dict__)
+
+
+
 # 앨범 title 수정 => 타이틀 명칭이 똑같은 걸 찾은 후 해당 타이틀을 변경해야 함
 
 find_by_id_query = "select * from tbl_album where title = %s"
@@ -39,7 +49,7 @@ if album_list is not None:
 else:
     print("해당 앨범이 없습니다.")
 
-# 앨범  삭제
+# 앨범 삭제
 if delete_album_list is not None:
     delete_query = "delete from tbl_album where title = %s"
     delete_params = delete_album_list,

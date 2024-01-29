@@ -1,4 +1,4 @@
-from a_mac.study_python.kim_kyusan.todo.todo import *
+from study_python.kim_kyusan.todo.todo import *
 from crud_module import *
 
 find_by_id_query = "select id from tbl_user where id = %s"
@@ -19,24 +19,26 @@ save_many_params = (
 )
 # save_many(save_many_query,save_many_params)
 
-# todo리스트 1개 항목 조회
-find_by_id_query = "select id, user_id, title, completed from tbl_todo where user_id = %s"
-find_by_id_params = 1,
-todo_one_list = find_all_by(find_by_id_query, find_by_id_params)
+# todo리스트 1개 항목 조회 (클래스 모듈을 사용할 것)
+find_by_id_query = "select id, user_id, title, completed from tbl_todo where id = %s"
+find_by_id_params = 2,
+todo_one_list = find_by_id(find_by_id_query, find_by_id_params)
+todo = Todo(**todo_one_list)
+print(todo.__dict__)
 # print(todo_one_list)
 
 # todo리스트 전체 조회
 find_all_query = "select *from tbl_todo"
 todo_list = find_all(find_all_query)
-for todo in todo_one_list:
-    todo_one = Todo(**todo)
-    # print(todo_one.__dict__)
+# for todo in todo_one_list:
+#     todo_one = Todo(**todo)
+#     print(todo_one.__dict__)
 
 # todo항목 중 comleted 수정
 find_by_id_query= "select id, user_id, title, completed from tbl_todo where title = %s"
 find_by_id_params = "delecturs aut autem",
 todo_title_list =find_by_id(find_by_id_query, find_by_id_params)
-print(todo_title_list.get("completed"))
+# print(todo_title_list.get("completed"))
 
 if todo_title_list is not None:
     if todo_title_list.get("completed") is False:
@@ -50,7 +52,7 @@ else:
 
 
 # todo리스트 삭제
-if todo_one_list is not None:
-    delete_query ="delete from tbl_todo where id = %s"
-    delete_params = todo_title_list.get('id')
-    delete(delete_query, delete_params)
+# if todo_one_list is not None:
+#     delete_query ="delete from tbl_todo where id = %s"
+#     delete_params = todo_title_list.get('id')
+    # delete(delete_query, delete_params)

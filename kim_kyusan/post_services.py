@@ -1,4 +1,5 @@
 from crud_module import *
+from post.post import *
 
 # post 생성
 find_by_id_query = "select id from tbl_user where email = %s"
@@ -15,10 +16,14 @@ save_many_params = (
 )
 # save_many(save_many_query, save_many_params)
 
+
 # post 조회
 find_by_id_query = "select user_id, id, title, body from tbl_post where title = %s"
 find_by_id_params = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
 post_list = find_by_id(find_by_id_query,find_by_id_params)
+post = Post(**post_list)
+print(post.__dict__)
+
 
 # post 항목 중 body 수정
 if post_list is not None:

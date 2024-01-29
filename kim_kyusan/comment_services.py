@@ -1,4 +1,5 @@
 from crud_module import *
+from comment.comment import *
 
 # comment 생성
 find_by_id_query = "select id from tbl_post where title = %s "
@@ -20,8 +21,16 @@ save_many_params = (
 find_all_query = "select *from tbl_comment"
 find_all_params = []
 comment_list = find_all(find_all_query)
-for comment in comment_list:
-    print(comment)
+# for comment in comment_list:
+#     print(comment)
+
+# comment 항목 1개 조회
+find_by_id_query = "select  p.title as title, name, email, c.body as body from tbl_post p join tbl_comment c on c.post_id = p.id and c.id= %s"
+find_by_id_params = 1,
+comment_one_list = find_by_id(find_by_id_query, find_by_id_params)
+comment_one = Comment(**comment_one_list)
+print(comment_one.__dict__)
+
 
 # comment 항목 중 name 수정
 if post_list is not None:
